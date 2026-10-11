@@ -8,7 +8,7 @@ Jr = 0.85 * 1e-7;              % gcm^2 -> kgm2
 Ls = 0.14 * 1e-3;              % mH -> H
 Rs = 5.3;                       % Ohm
 
-numDcMotor = [Kt];
+numDcMotor = Kt;
 denDcMotor = [Ls*Jr Rs*Jr Kt*Ke];
 
 %% Transfer Function
