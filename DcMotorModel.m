@@ -1,3 +1,5 @@
+close all;
+
 numDcMotor = M1.Kt;
 denDcMotor = [M1.Ls*M1.Jr M1.Rs*M1.Jr M1.Kt*M1.Ke];
 
@@ -58,7 +60,25 @@ kontrolculer.akim.Kd = 0.0;
 kontrolculer.akim.Kaw = 0.0;
 
 controller = tf([kontrolculer.akim.Kp kontrolculer.akim.Ki], [1 0]);
-figure('Name','Kontrolcu Eklenmis Transfer Fonksiyonu');
+figure('Name','Kontrolcu Eklenmis Elektriksel Transfer Fonksiyonu');
 bode(controller * tFuncElec);
 
+%% Speed Controller Design
+% Ham sistem
+tFuncElec = tf(1, [Joint1.J M1.Bv]);
+figure('Name','Mekanik Transfer Fonksiyonu');
+bode(tFuncElec);
 
+% Hiz kontrolcüsü parametreleri
+kontrolculer.hiz.Kp = Joint1.J * 4e2 * 2 * pi;
+kontrolculer.hiz.Ki = kontrolculer.akim.Kp * M1.Bv / Joint1.J;
+kontrolculer.hiz.Kd = 0.0;
+kontrolculer.hiz.Kaw = 0.0;
+
+%% Position Controller Design
+
+% Poz kontrolcüsü parametreleri
+kontrolculer.poz.Kp = 4e1 * 2 * pi;
+kontrolculer.poz.Ki = 0.0;
+kontrolculer.poz.Kd = 0.0;
+kontrolculer.poz.Kaw = 0.0;
