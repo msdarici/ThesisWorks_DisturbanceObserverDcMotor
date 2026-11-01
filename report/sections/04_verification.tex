@@ -1,0 +1,23 @@
+\section{Archived Reduced-Model Verification}
+\textbf{Status:} Historical ideal-inertia check only. The generated reduced model was removed; this is not validation of the retained motor--link model.
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$\tau_0$ & Motor torque step & $10^{-4}$ N m & Test input\\
+$t_f$ & Duration & $1$ s & Test setting\\
+$N$ & Ratio & $69255/208$ & Selected; idealized\\
+$\epsilon_\theta$ & Maximum angle error & $<10^{-6}$ rad & Acceptance criterion\\
+\bottomrule\end{tabular}\end{center}
+\[
+\theta_l(0)=0,\quad\dot\theta_l(0)=0,\quad\tau_{ext}=0
+\]
+\[
+\boxed{\theta_l(t)=\frac{N\tau_0}{2J_{eq}}t^2}
+\]
+\[
+e_{max}=\max_k|\theta_{sim}(t_k)-\theta_l(t_k)|
+\]
+\IfFileExists{archive/angle_comparison.png}{
+\begin{center}\includegraphics[width=.85\linewidth]{archive/angle_comparison.png}\end{center}
+}{\textbf{Result:} Pending execution.}
+\textbf{Next:} Confirm motor winding and assembly product codes; verify inertia and torque limits.
+
+

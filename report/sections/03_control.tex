@@ -1,0 +1,26 @@
+\section{Control Design Interface}
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$\omega_i$ & Current-loop bandwidth & TBD / rad s$^{-1}$ & Pending limits\\
+$\omega_v$ & Speed-loop bandwidth & TBD / rad s$^{-1}$ & Pending design\\
+$K_t$ & Torque constant & TBD / N m A$^{-1}$ & Verify motor variant\\
+$R,L_a$ & Resistance, inductance & TBD / $\Omega$, H & Verify motor variant\\
+\bottomrule\end{tabular}\end{center}
+\textbf{Planned topology:} Current PI; load-speed PI; load-position P.
+\[
+L_a\dot i+Ri+K_eN\dot\theta_l=v,\qquad \tau_m=K_ti
+\]
+\[
+P_i(s)=\frac{1}{L_as+R},\qquad
+C_i(s)=\frac{\omega_i(L_as+R)}{s}
+\]
+\[
+P_v(s)=\frac{N}{J_{eq}s}
+\quad\text{(motor-torque input, load-speed output)}
+\]
+\textbf{Status:} Equations are design interfaces, not implemented controllers.
+No numerical gains are approved. Finite current-loop bandwidth and saturation require verification.
+\[
+\theta_m-\theta_s\rightarrow0,\qquad
+\tau_h+\tau_e\rightarrow0
+\]
+\textbf{Bilateral stage:} Differential/common modes and DOB follow single-axis validation.

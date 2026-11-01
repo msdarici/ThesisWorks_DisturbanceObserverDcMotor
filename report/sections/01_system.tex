@@ -1,0 +1,43 @@
+\section{System Architecture}
+\textbf{Topology:} Single-link revolute joint; ideal gear; horizontal XY plane.
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,box/.style={draw,align=center,minimum height=12mm},>=Stealth]
+\node[box] (a) {Motor torque\\$\tau_m$};
+\node[box,right=of a] (b) {Ideal gear\\$N$};
+\node[box,right=of b] (c) {Load dynamics\\$J_{eq}$};
+\node[box,right=of c] (d) {Load angle\\$\theta_l$};
+\draw[->] (a)--(b);\draw[->] (b)--(c);\draw[->] (c)--(d);
+\end{tikzpicture}
+\end{center}
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$L$ & Link length & $0.150$ m & Design target\\
+$N$ & $\omega_m/\omega_l$ &  $69255/208$ & Catalog; nominal 333:1\\
+$\tau_{g,c}$ & Gear continuous rating & $1.8$ N m & Catalog output limit\\
+$\eta$ & Gear efficiency & $1$ & Ideal assumption\\
+\bottomrule\end{tabular}\end{center}
+\[
+\theta_m=N\theta_l,\qquad \omega_m=N\omega_l,\qquad \tau_{l,m}=N\tau_m
+\]
+\[
+\mathbf{g}=-g\mathbf{e}_z,\qquad
+\tau_{g,z}=(\mathbf{r}_c\times m\mathbf{g})\cdot\mathbf{e}_z=0
+\]
+\textbf{Scope:} No friction, backlash, compliance or contact. Vertical legacy model retained.
+
+\subsection*{Selected Gearhead: maxon GP 22 C}
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$\eta_{max}$ & Maximum efficiency & $0.49$ & Catalog; not simulated\\
+$J_g$ & Input-side gear inertia & $4\times10^{-8}$ kg m$^2$ & Catalog; included\\
+\bottomrule\end{tabular}\end{center}
+\textbf{Source:} maxon, GP 22 C catalog, March 2025, pp. 421--422.
+Exact ratio $69255/208\simeq332.9567$. EC-max 16 appears in the modular combinations.
+\[
+\tau_{out,steady}\leq\min\{1.8,\ \eta N\tau_{m,continuous}\}\quad[\mathrm{N\,m}]
+\]
+\textbf{Qualification:} Steady forward-drive estimate only. Motor thermal limits, operating efficiency and assembly variant remain to be verified.
+The ideal baseline uses $\eta=1$; catalog efficiency is not a friction model.
+\[
+J_{m\rightarrow l}=N^2J_m\simeq9.423\times10^{-3}\ \mathrm{kg\,m^2}
+\]
+\textbf{Haptic implication:} Reflected rotor inertia increases. Backdrivability requires separate assessment.
+

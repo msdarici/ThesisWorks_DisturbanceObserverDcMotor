@@ -1,0 +1,2 @@
+N = 332.956730769 (GP 22 C, idealized)
+Maximum angle error = 6.66133814775e-16 rad

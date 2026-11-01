@@ -1,0 +1,38 @@
+\section{Mechanical Model}
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$J_l$ & Link inertia & $\Jlink$ kg m$^2$ & Calculated; assumed geometry\\
+$J_m$ & Rotor inertia & $\Jrotor$ kg m$^2$ & Legacy; unverified\\
+$\tau_m$ & Motor torque & N m & Prescribed input\\
+$\tau_{ext}$ & External load torque & N m & Positive with $\theta_l$\\
+\bottomrule\end{tabular}\end{center}
+\[
+T=\frac12 J_l\dot\theta_l^2+\frac12 J_m(N\dot\theta_l)^2,
+\qquad J_{eq}=J_l+N^2J_m
+\]
+\[
+\boxed{J_{eq}\ddot\theta_l=N\tau_m+\tau_{ext}}
+\]
+\[
+\boxed{\frac{\Theta_l(s)}{T_m(s)}=\frac{N}{J_{eq}s^2}},
+\qquad
+\frac{\Theta_l(s)}{T_{ext}(s)}=\frac{1}{J_{eq}s^2}
+\]
+\textbf{Boundary:} Motor torque is ideal. Electrical dynamics and actuator limits are not yet represented.
+\[
+\text{150 mm design geometry}\ \not\Rightarrow\ \text{verified legacy inertia}
+\]
+
+\subsection*{Rectangular Link Geometry}
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$L$ & Length & $0.150$ m & Agreed target\\
+$w,h$ & Width, thickness & $0.020,0.010$ m & Assumed\\
+$\rho$ & Density & $1240$ kg m$^{-3}$ & Assumed solid PLA\\
+$m$ & Mass & $0.0372$ kg & Calculated\\
+$l_c$ & COM distance & $0.075$ m & Calculated\\
+\bottomrule\end{tabular}\end{center}
+\[
+m=\rho Lwh,\qquad
+I_{zz,c}=\frac{m}{12}(L^2+w^2),\qquad
+I_{zz,p}=I_{zz,c}+m(L/2)^2
+\]
+\textbf{Axis:} Length along X; joint about Z. Real print mass and inertia remain unverified.
