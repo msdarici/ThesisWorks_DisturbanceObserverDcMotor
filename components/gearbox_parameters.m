@@ -25,3 +25,9 @@ G1.catalog = struct('partNumber',143995, ...
                     'stages',4);
 % Torque/speed limits, efficiency and backlash are NOT automatically modeled.
 % Forward/backdrive losses require a separate, direction-aware model.
+
+%% Torque limits [Nm], GEAR OUTPUT shaft
+G1.tauContinuous = G1.catalog.continuousOutputTorque; % 1.8 Nm
+G1.tauPeak = G1.catalog.intermittentOutputTorque;     % 2.7 Nm, NOT continuous
+G1.tauMax = G1.tauContinuous; % Selected output limit for current experiment
+% Fields are parameters only. Connect them to Saturation blocks explicitly.

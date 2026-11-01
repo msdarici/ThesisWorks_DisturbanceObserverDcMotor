@@ -1,0 +1,18 @@
+\section{Unilateral Angular Contact}
+\begin{center}\begin{tabular}{llll}\ParamHeader
+$\theta_w$ & Wall angle & $\pi/2$ rad & Test setting\\
+$K_e$ & Angular stiffness & $0.5$ N m/rad & Exploratory\\
+$\zeta_e$ & Contact damping scale & $0.7$ & Heuristic\\
+$D_e$ & Angular damping & $2\zeta_e\sqrt{JK_e}$ & Calculated\\
+\bottomrule\end{tabular}\end{center}
+\[
+\delta=\theta_l-\theta_w,\qquad
+r_e=\begin{cases}0&\delta\leq0\\
+\max(0,K_e\delta+D_e\omega_l)&\delta>0
+\end{cases},\qquad \tau_e=-r_e
+\]
+\textbf{Connection:} Subtract $r_e$ at the load-side torque sum.
+The wall neither acts before contact nor pulls during separation.
+\textbf{Scope:} Angular virtual wall, not planar geometric contact.
+The damping estimate excludes existing viscous friction and active control.
+\textbf{First test:} Single target change from $\theta_w-0.05$ to $\theta_w+0.05$ rad.

@@ -13,3 +13,10 @@ M1 = struct('Kt',9.32e-3, ...           % mNm/A -> Nm/A
 M1.Fstr = M1.Fs - M1.Fc;                % statik fazlalık (blokta kullanılan)
 
 
+
+%% Torque limits [Nm], MOTOR shaft
+% Exact motor winding/current/thermal ratings are not yet verified.
+M1.tauContinuous = NaN; % Replace with verified continuous motor torque.
+M1.tauPeak = NaN;       % Replace with verified short-duration motor torque.
+% Effective command limit is computed by Main AFTER loading the gearbox.
+M1.tauMax = NaN;
