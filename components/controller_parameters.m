@@ -18,21 +18,21 @@ figure('Name','Kontrolcu Eklenmis Elektriksel Transfer Fonksiyonu');
 bode(controller * tFuncElec);
 
 %% Speed Controller Design
-% Ham sistem
-tFuncElec = tf(1, [Joint1.J M1.Bv]);
+tFuncElec = tf(G1.N, [Joint1.J Joint1.B]);
 figure('Name','Mekanik Transfer Fonksiyonu');
 bode(tFuncElec);
 
 % Hiz kontrolcüsü parametreleri
-kontrolculer.hiz.Kp = Joint1.J * 5e2 * 2 * pi;
-kontrolculer.hiz.Ki = kontrolculer.hiz.Kp * M1.Bv / Joint1.J;
+kontrolculer.hiz.Kp = Joint1.J * 5e2 * 2 * pi / G1.N;
+kontrolculer.hiz.Ki = kontrolculer.hiz.Kp * Joint1.B / Joint1.J;
 kontrolculer.hiz.Kd = 0.0;
 kontrolculer.hiz.Kaw = 0.0;
 
 %% Position Controller Design
 
 % Poz kontrolcüsü parametreleri
-kontrolculer.poz.Kp = 200 * 2 * pi;
+kontrolculer.poz.Kp = 2 * pi;
 kontrolculer.poz.Ki = 0.0;
 kontrolculer.poz.Kd = 0.0;
 kontrolculer.poz.Kaw = 0.0;
+

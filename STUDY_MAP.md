@@ -89,3 +89,12 @@ Bu güncelleme önceki N=20 bekliyor kayıtlarını geçersiz kılar.
 G1.eta=1 ideal model kabulü; katalog maksimum verimi G1.catalog.maxEfficiency=0.49.
 Tork/hız sınırları ve boşluk yalnızca katalog alanlarında, henüz modelde uygulanmıyor.
 Main çalışınca Joint1.J ve mevcut kontrolcü kazançları yeni değerlerle hesaplanır.
+
+## Sürtünme yolu doğrulandı
+Kaydedilmiş Model.slx: Motor_Hiz -> Motor Surtunme Modeli (P=M1) -> Motor_Surtunme.
+Motor_Tork - Motor_Surtunme, sonra Disli Ileri üzerinden N ile çarpılıyor.
+Motor_Hiz yük hızından N ile oluşturuluyor; motor viskoz sönümü yükte N^2*M1.Bv.
+Dişli sürtünmesi yük hızından G1 ile hesaplanıp mekanik toplamdan çıkarılıyor; G1.Bv=0.
+Joint1.B=N^2*M1.Bv+G1.Bv eklendi, hız PI Ki hesabı ve mekanik Bode bitkisi düzeltildi.
+SLX değiştirilmedi. Diskte hız kontrolcü girişi hâlâ Motor_Hiz; açık modelde Disli_Hiz değişikliği kaydedilmeli.
+Bu kontrolcü formülü Disli_Hiz geri beslemesini varsayar.
